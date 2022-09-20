@@ -64,10 +64,22 @@ const questions =() =>
 };
 
 // TODO: Create a function to write README file
-function writeToFile(README, readmeData) {}
-
+function writeToFile(README, readmeData) {
+ questions()
+ .then(readmeData => {
+  return generatePage(readmeData);
+})
+.then(pageHTML => {
+  return writeToFile(pageHTML);
+})
+.then(writeFileResponse => {
+  console.log(writeFileResponse);
+})
+.catch(err => {
+  console.log(err);
+})}
 // TODO: Create a function to initialize app
 function init() {}
-
+module.exports = { writeToFile};
 // Function call to initialize app
 init();
